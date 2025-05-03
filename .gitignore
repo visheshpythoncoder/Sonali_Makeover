@@ -1,0 +1,24 @@
+# node modules
+node_modules/
+
+# build outputs
+build/
+dist/
+
+# logs
+*.log
+logs/
+
+# OS junk files
+.DS_Store
+Thumbs.db
+
+# environment variables
+.env
+
+# image or video backups
+*.zip
+*.rar
+*.7z
+*.tar.gz
+*.mp4
