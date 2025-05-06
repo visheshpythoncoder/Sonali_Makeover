@@ -73,21 +73,22 @@ const AutoSlider = ({ slides, small }) => {
 const Service = () => {
   return (
     <div className="bg-gray-100 py-10 px-4">
-      <h1
-  className="text-center font-pacifico text-4xl md:text-5xl font-semibold text-[#A77454] mb-12 animate-fade-in-up drop-shadow-md"
->
-  ✨ Makeup Services ✨
-</h1>
-
+      <h1 className="text-center font-pacifico text-4xl md:text-5xl font-semibold text-[#A77454] mb-12 animate-fade-in-up drop-shadow-md">
+        ✨ Makeup Services ✨
+      </h1>
 
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
         <div className="flex flex-col items-center">
-          <h2 className="text-2xl font-bold mb-4 text-[#98694B]">Makeup Looks</h2>
+          <h2 className="text-2xl font-bold mb-4 text-[#98694B]">
+            Makeup Looks
+          </h2>
           <AutoSlider slides={makeupSlides} small />
         </div>
 
         <div className="flex flex-col items-center">
-          <h2 className="text-2xl font-bold mb-4 text-[#98694B]">Hair Styles</h2>
+          <h2 className="text-2xl font-bold mb-4 text-[#98694B]">
+            Hair Styles
+          </h2>
           <AutoSlider slides={hairSlides} />
         </div>
       </div>

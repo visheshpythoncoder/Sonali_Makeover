@@ -78,7 +78,7 @@ export default function ProfileSlider() {
             </div>
 
             <img
-              src="./photos/pr34.png"
+              src="./photos/pr14.png"
               className="w-[250px] sm:w-[300px] md:w-[400px]"
               alt="Swati"
             />
