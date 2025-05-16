@@ -150,7 +150,7 @@ export default function ContactComponent() {
               <div className="flex items-center gap-2 bg-gray-100 text-gray-800 px-6 py-3 rounded-2xl shadow-md text-base md:text-lg text-center">
                 <i className="bi bi-geo-alt-fill text-red-500 text-xl"></i>
                 <span>
-                  Near Sai Mandir, Bus Stand, Saoner, Nagpur, Maharashtra
+                plot no 52,ward no.1,laxmi nagar,near janta lawn,chindwara road,saoner
                 </span>
               </div>
             </div>
