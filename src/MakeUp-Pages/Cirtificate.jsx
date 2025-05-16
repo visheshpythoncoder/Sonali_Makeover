@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
 export default function CertificationGallery() {
@@ -50,32 +50,74 @@ export default function CertificationGallery() {
   const [current1, setCurrent1] = useState(0);
   const [current2, setCurrent2] = useState(0);
 
-  const nextSlide1 = () =>
-    setCurrent1((prev) => (prev + 1) % imagesSet1.length);
-  const prevSlide1 = () =>
-    setCurrent1((prev) => (prev - 1 + imagesSet1.length) % imagesSet1.length);
+  const nextSlide1 = () => setCurrent1((prev) => (prev + 1) % imagesSet1.length);
+  const prevSlide1 = () => setCurrent1((prev) => (prev - 1 + imagesSet1.length) % imagesSet1.length);
+  const nextSlide2 = () => setCurrent2((prev) => (prev + 1) % imagesSet2.length);
+  const prevSlide2 = () => setCurrent2((prev) => (prev - 1 + imagesSet2.length) % imagesSet2.length);
 
-  const nextSlide2 = () =>
-    setCurrent2((prev) => (prev + 1) % imagesSet2.length);
-  const prevSlide2 = () =>
-    setCurrent2((prev) => (prev - 1 + imagesSet2.length) % imagesSet2.length);
-
-  // Automatically change the images every 5 seconds with a smooth transition
   useEffect(() => {
-    const interval1 = setInterval(() => {
-      nextSlide1();
-    }, 6000); // 6 seconds for Carousel 1 to allow more time for smooth transition
-
-    const interval2 = setInterval(() => {
-      nextSlide2();
-    }, 6000); // 6 seconds for Carousel 2
-
-    // Clean up intervals on component unmount
+    const interval1 = setInterval(() => nextSlide1(), 6000);
+    const interval2 = setInterval(() => nextSlide2(), 6000);
     return () => {
       clearInterval(interval1);
       clearInterval(interval2);
     };
   }, []);
+
+  const imageVariants = {
+    initial: { opacity: 0, clipPath: "inset(100% 0% 0% 0%)" },
+    animate: {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      transition: { duration: 1, ease: "easeInOut" },
+    },
+    exit: {
+      opacity: 0,
+      clipPath: "inset(0% 0% 100% 0%)",
+      transition: { duration: 0.8, ease: "easeInOut" },
+    },
+  };
+
+  const Carousel = ({ images, current, next, prev }) => (
+    <div className="relative w-full overflow-hidden rounded-xl shadow-lg bg-white h-[350px]">
+      <div className="w-full h-full relative">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={current}
+            src={images[current]}
+            alt={`Certificate ${current + 1}`}
+            loading="lazy"
+            className="absolute w-full h-full object-contain top-0 left-0"
+            variants={imageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "https://via.placeholder.com/400";
+            }}
+          />
+        </AnimatePresence>
+      </div>
+      <div className="absolute top-1/2 w-full px-4 flex justify-between items-center -translate-y-1/2 z-10">
+        <button
+          onClick={prev}
+          className="bg-white p-3 rounded-full shadow hover:bg-blue-100"
+        >
+          ◀
+        </button>
+        <button
+          onClick={next}
+          className="bg-white p-3 rounded-full shadow hover:bg-blue-100"
+        >
+          ▶
+        </button>
+      </div>
+      <div className="absolute bottom-2 w-full text-center text-sm text-black z-10">
+        {current + 1} / {images.length}
+      </div>
+    </div>
+  );
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-white to-blue-50 px-4 py-10">
@@ -85,12 +127,7 @@ export default function CertificationGallery() {
           className="flex gap-2 w-max h-full"
           initial={{ x: 0 }}
           animate={{ x: "-50%" }}
-          transition={{
-            repeat: Infinity,
-            repeatType: "loop",
-            duration: 40,
-            ease: "linear",
-          }}
+          transition={{ repeat: Infinity, repeatType: "loop", duration: 40, ease: "linear" }}
         >
           {[...bannerImages, ...bannerImages].map((src, index) => (
             <img
@@ -98,7 +135,7 @@ export default function CertificationGallery() {
               src={src}
               alt={`Banner ${index + 1}`}
               loading="lazy"
-              className="h-full w-[300px] sm:w-[350px] md:w-[400px] lg:w-[500px] object-cover rounded-none shadow-none"
+              className="h-full w-[300px] sm:w-[350px] md:w-[400px] lg:w-[500px] object-cover"
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src = "https://via.placeholder.com/300";
@@ -112,77 +149,9 @@ export default function CertificationGallery() {
         Student Certification Distribution
       </h2>
 
-      {/* Carousels */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 max-w-6xl mx-auto">
-        {/* Carousel 1 */}
-        <div className="relative w-full overflow-hidden rounded-xl shadow-lg bg-white">
-          <motion.img
-            key={current1}
-            src={imagesSet1[current1]}
-            alt={`Certificate ${current1 + 1}`}
-            loading="lazy"
-            className="w-full h-auto object-contain transition-all duration-500"
-            initial={{ opacity: 0, filter: "blur(3px)" }}
-            animate={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{ opacity: { duration: 1 }, filter: { duration: 2 } }}
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = "https://via.placeholder.com/400";
-            }}
-          />
-          <div className="absolute top-1/2 w-full px-4 flex justify-between items-center -translate-y-1/2">
-            <button
-              onClick={prevSlide1}
-              className="bg-white p-3 rounded-full shadow hover:bg-blue-100"
-            >
-              ◀
-            </button>
-            <button
-              onClick={nextSlide1}
-              className="bg-white p-3 rounded-full shadow hover:bg-blue-100"
-            >
-              ▶
-            </button>
-          </div>
-          <div className="absolute bottom-2 w-full text-center text-sm text-black">
-            {current1 + 1} / {imagesSet1.length}
-          </div>
-        </div>
-
-        {/* Carousel 2 */}
-        <div className="relative w-full overflow-hidden rounded-xl shadow-lg bg-white">
-          <motion.img
-            key={current2}
-            src={imagesSet2[current2]}
-            alt={`Certificate ${current2 + 1}`}
-            loading="lazy"
-            className="w-full h-auto object-contain transition-all duration-500"
-            initial={{ opacity: 0, filter: "blur(3px)" }}
-            animate={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{ opacity: { duration: 1 }, filter: { duration: 1.2 } }}
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = "https://via.placeholder.com/400";
-            }}
-          />
-          <div className="absolute top-1/2 w-full px-4 flex justify-between items-center -translate-y-1/2">
-            <button
-              onClick={prevSlide2}
-              className="bg-white p-3 rounded-full shadow hover:bg-blue-100"
-            >
-              ◀
-            </button>
-            <button
-              onClick={nextSlide2}
-              className="bg-white p-3 rounded-full shadow hover:bg-blue-100"
-            >
-              ▶
-            </button>
-          </div>
-          <div className="absolute bottom-2 w-full text-center text-sm text-black">
-            {current2 + 1} / {imagesSet2.length}
-          </div>
-        </div>
+        <Carousel images={imagesSet1} current={current1} next={nextSlide1} prev={prevSlide1} />
+        <Carousel images={imagesSet2} current={current2} next={nextSlide2} prev={prevSlide2} />
       </div>
     </div>
   );
