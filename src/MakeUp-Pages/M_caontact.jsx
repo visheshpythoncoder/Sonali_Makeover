@@ -166,7 +166,7 @@ export default function ContactComponent() {
             </p>
             <iframe
               title="Sai Temple Saoner Map"
-              src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d404.78446943040916!2d78.91585324589126!3d21.39568937570323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1splot%20no%2052%2Cward%20no.1%2Claxmi%20nagar%2Cnear%20janta%20lawn%2Cchindwara%20road%2Csaoner!5e1!3m2!1sen!2sin!4v1747417140835!5m2!1sen!2sin" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3714.8563457561227!2d78.9163718!3d21.395560300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4e573b8a16c7f%3A0xe987aa54dce7e96f!2sSonali_Makeover%20Studio%20and%20Classes!5e0!3m2!1sen!2sin!4v1747418773127!5m2!1sen!2sin" 
               width="100%"
               height="350"
               style={{ border: 0 }}
