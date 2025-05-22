@@ -41,7 +41,7 @@ export default function Form() {
   }, [inView]);
 
   const handleAccess = () => {
-    if (activeLink === "academy" && passcode === "academy123") {
+    if (activeLink === "academy" && passcode === "sonu1208") {
       MySwal.fire({
         icon: "success",
         title: "Access Granted",
@@ -50,7 +50,7 @@ export default function Form() {
       }).then(() => {
         window.open("https://forms.gle/y1v2HVw5NCPTDNtj7", "_blank");
       });
-    } else if (activeLink === "booking" && passcode === "booking123") {
+    } else if (activeLink === "booking" && passcode === "swati1712") {
       MySwal.fire({
         icon: "success",
         title: "Access Granted",
