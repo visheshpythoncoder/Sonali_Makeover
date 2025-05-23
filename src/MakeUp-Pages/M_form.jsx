@@ -42,22 +42,20 @@ export default function Form() {
 
   const handleAccess = () => {
     if (activeLink === "academy" && passcode === "sonu1208") {
+      window.open("https://forms.gle/y1v2HVw5NCPTDNtj7", "_blank");
       MySwal.fire({
         icon: "success",
         title: "Access Granted",
         text: "Redirecting you to the Academy Registration page.",
         confirmButtonColor: "#e91e63",
-      }).then(() => {
-        window.open("https://forms.gle/y1v2HVw5NCPTDNtj7", "_blank");
       });
     } else if (activeLink === "booking" && passcode === "swati1712") {
+      window.open("https://forms.gle/AaKb7CERMtY7PpaJ7", "_blank");
       MySwal.fire({
         icon: "success",
         title: "Access Granted",
         text: "Redirecting you to the Appointment Booking page.",
         confirmButtonColor: "#e91e63",
-      }).then(() => {
-        window.open("https://forms.gle/AaKb7CERMtY7PpaJ7", "_blank");
       });
     } else {
       MySwal.fire({
@@ -70,6 +68,7 @@ export default function Form() {
     setPasscode("");
     setActiveLink(null);
   };
+  
 
   return (
     <div
